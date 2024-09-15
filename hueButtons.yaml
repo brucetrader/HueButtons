@@ -1,1 +1,169 @@
-
+blueprint:
+  name: Hue Butttons
+  description: Hue Button Controls
+  domain: automation
+  author: Bruce Trader
+  input:
+    btn1:
+      name: Hue Button one
+      description: Hue Button 1
+      selector:
+        entity:
+          multiple: false
+    btn2:
+      name: Hue Button one
+      description: Hue Button 1
+      selector:
+        entity:
+          multiple: false
+    btn3:
+      name: Hue Button one
+      description: Hue Button 1
+      selector:
+        entity:
+          multiple: false
+    btn4:
+      name: Hue Button one
+      description: Hue Button 1
+      selector:
+        entity:
+          multiple: false
+    btn1short:
+      name: button one short
+      description: button one short
+      default: []
+      selector:
+        action: {}
+    btn1long:
+      name: button one long
+      description: button one long
+      default: []
+      selector:
+        action: {}
+    btn2short:
+      name: button two short
+      description: button two short
+      default: []
+      selector:
+        action: {}
+    btn2long:
+      name: button two long
+      description: button two long
+      default: []
+      selector:
+        action: {}
+    btn3short:
+      name: button three short
+      description: button three short
+      default: []
+      selector:
+        action: {}
+    btn3long:
+      name: button three long
+      description: button three long
+      default: []
+      selector:
+        action: {}
+    btn4short:
+      name: button four short
+      description: button four short
+      default: []
+      selector:
+        action: {}
+    btn4long:
+      name: button four long
+      description: button four long
+      default: []
+      selector:
+        action: {}
+trigger:
+  - platform: state
+    entity_id:
+      - !input btn1
+    attribute: event_type
+    to: short_release
+    id: 1short
+  - platform: state
+    entity_id:
+      - !input btn1
+    attribute: event_type
+    to: long_press
+    id: 1long
+  - platform: state
+    entity_id:
+      - !input btn2
+    attribute: event_type
+    to: short_release
+    id: 2short
+  - platform: state
+    entity_id:
+      - !input btn2
+    attribute: event_type
+    to: long_press
+    id: 2long
+  - platform: state
+    entity_id:
+      - !input btn3
+    attribute: event_type
+    to: short_release
+    id: 3short
+  - platform: state
+    entity_id:
+      - !input btn3
+    attribute: event_type
+    to: long_press
+    id: 3long
+  - platform: state
+    entity_id:
+      - !input btn4
+    attribute: event_type
+    to: short_release
+    id: 4short
+  - platform: state
+    entity_id:
+      - !input btn4
+    attribute: event_type
+    to: long_press
+    id: 4long
+action:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id:
+              - 1short
+        sequence: !input btn1short
+      - conditions:
+          - condition: trigger
+            id:
+              - 1long
+        sequence: !input btn1long
+      - conditions:
+          - condition: trigger
+            id:
+              - 2short
+        sequence: !input btn2short
+      - conditions:
+          - condition: trigger
+            id:
+              - 2long
+        sequence: !input btn2long
+      - conditions:
+          - condition: trigger
+            id:
+              - 3short
+        sequence: !input btn3short
+      - conditions:
+          - condition: trigger
+            id:
+              - 3long
+        sequence: !input btn3long    
+      - conditions:
+          - condition: trigger
+            id:
+              - 4short
+        sequence: !input btn4short
+      - conditions:
+          - condition: trigger
+            id:
+              - 4long
+        sequence: !input btn4long
